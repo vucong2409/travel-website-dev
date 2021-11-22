@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from sqlalchemy import Column, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.expression import null
@@ -170,6 +169,3 @@ class Booking(Base):
     )
     order_id = Column(INTEGER, nullable=False)
     customer_id = Column(INTEGER, ForeignKey("customers.customer_id"), nullable=False)
-=======
-#SQLAlchemy Models
->>>>>>> e8ed818d0fd206f2531bacf35b349559ecaad92e
