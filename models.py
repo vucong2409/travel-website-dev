@@ -3,10 +3,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.expression import null
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.sql.sqltypes import VARCHAR, DATE, INTEGER, String
-from .database import Base
+
+import database
 
 
-class Tour(Base):
+class Tour(database.Base):
     __tablename__ = "tours"
 
     tour_id = Column(VARCHAR(10), primary_key=True, nullable=False)
@@ -25,7 +26,7 @@ class Tour(Base):
     tour_desc = Column(VARCHAR(100), default=null)
 
 
-class User(Base):
+class User(database.Base):
     __tablename__ = "users"
 
     user_id = Column(
@@ -39,16 +40,16 @@ class User(Base):
     email = Column(VARCHAR(50), nullable=False)  # unique?
 
 
-class Login(Base):
+class Login(database.Base):
     __tablename__ = "login"
 
     login_id = Column(INTEGER, primary_key=True, autoincrement=True)
     login_role_id = Column(Integer, ForeignKey("roles.role_id"), nullable=False)
-    login_user_name = Column(String(100), nullable=False)
-    login_user_password = Column(String(100), nullable=False)
+    login_username = Column(String(100), nullable=False)
+    login_password = Column(String(100), nullable=False)
 
 
-class Permission(Base):
+class Permission(database.Base):
     __tablename__ = "permission"
 
     per_id = Column(VARCHAR(10), primary_key=True, nullable=False)
@@ -57,7 +58,7 @@ class Permission(Base):
     per_module = Column(VARCHAR(50), nullable=False)
 
 
-class Role(Base):
+class Role(database.Base):
     __tablename__ = "roles"
 
     role_id = Column(VARCHAR(10), primary_key=True, nullable=False)
@@ -65,7 +66,7 @@ class Role(Base):
     role_desc = Column(VARCHAR(20), nullable=False)
 
 
-class Order(Base):
+class Order(database.Base):
     __tablename__ = "orders"
 
     order_id = Column(INTEGER, primary_key=True, nullable=False, autoincrement=True)
@@ -74,7 +75,7 @@ class Order(Base):
     user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
 
 
-class Orderdetail(Base):
+class Orderdetail(database.Base):
     __tablename__ = "orderdetails"
 
     order_id = Column(
@@ -94,7 +95,7 @@ class Orderdetail(Base):
     customer_id = Column(INTEGER, nullable=False)
 
 
-class Customer(Base):
+class Customer(database.Base):
     __tablename__ = "customers"
 
     customer_id = Column(INTEGER, primary_key=True, nullable=False, autoincrement=True)
@@ -109,7 +110,7 @@ class Customer(Base):
     phone = Column(VARCHAR(10), nullable=False)
 
 
-class Place(Base):
+class Place(database.Base):
     __tablename__ = "places"
 
     place_id = Column(VARCHAR(10), primary_key=True, nullable=False)
@@ -118,14 +119,14 @@ class Place(Base):
     place_desc = Column(VARCHAR(100), default=null)
 
 
-class City(Base):
+class City(database.Base):
     __tablename__ = "cities"
 
     city_id = Column(VARCHAR(10), primary_key=True, nullable=False)
     city_name = Column(VARCHAR(50), nullable=False)
 
 
-class Type(Base):
+class Type(database.Base):
     __tablename__ = "types"
 
     type_id = Column(VARCHAR(10), primary_key=True, nullable=False)
@@ -133,7 +134,7 @@ class Type(Base):
     type_desc = Column(VARCHAR(100), default=null)
 
 
-class Tourguide(Base):
+class Tourguide(database.Base):
     __tablename__ = "tourguides"
 
     tourGuide_id = Column(VARCHAR(10), primary_key=True, nullable=False)
@@ -144,17 +145,17 @@ class Tourguide(Base):
     description = Column(VARCHAR(100), nullable=False)
 
 
-class Comment(Base):
+class Comment(database.Base):
     __tablename__ = "comments"
 
     comment_id = Column(INTEGER, primary_key=True, nullable=False, autoincrement=True)
     user_id = Column(INTEGER, ForeignKey("users.user_id"), nullable=False)
     tour_id = Column(VARCHAR(10), ForeignKey("tours.tour_id"), nullable=False)
-    rating = Column(INTEGER(5), nullable=False)
+    rating = Column(INTEGER, nullable=False)
     comment = Column(VARCHAR(100), nullable=False)
 
 
-class Booking(Base):
+class Booking(database.Base):
     __tablename__ = "booking"
 
     booking_id = Column(
