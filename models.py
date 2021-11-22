@@ -3,10 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.expression import null
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.sql.sqltypes import VARCHAR, DATE, INTEGER
-
-# from .database import Base
-
-Base = declarative_base()
+from .database import Base
 
 
 class Tour(Base):
