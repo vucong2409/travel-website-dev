@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 from pydantic import BaseModel
 from datetime import date, datetime
 
 from sqlalchemy import orm
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
 class TourBase(BaseModel):
     tour_id: str
@@ -31,3 +35,11 @@ class Tour(TourBase):
 
     class Config:
         orm_mode: True
+=======
+#Pydantic Models
+from pydantic import BaseModel
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+>>>>>>> e8ed818d0fd206f2531bacf35b349559ecaad92e
