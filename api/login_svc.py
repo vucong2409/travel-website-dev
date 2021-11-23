@@ -4,7 +4,7 @@ from jose import JWTError, jwt
 from typing import Optional
 from sqlalchemy import log
 from sqlalchemy.orm import Session
-import schemas, models
+from .. import schemas, models
 from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')

@@ -4,23 +4,27 @@ from datetime import date, datetime
 
 from sqlalchemy import orm
 
+
 class Token(BaseModel):
     access_token: str
     token_type: str
+
 
 class Login_Form(BaseModel):
     login_username: str
     login_password: str
 
+
 class Login(Login_Form):
     login_id: Optional[int]
     login_role_id: Optional[int]
 
-class TourBase(BaseModel):
+
+class TourOut(BaseModel):
     tour_id: str
-    place_id: str
-    tourguide_id: str
-    type_id: str
+    place_id: Optional[str]
+    tourguide_id: Optional[str]
+    type_id: Optional[str]
     transport: str
     departure_place: str
     adult_price: str
@@ -28,7 +32,7 @@ class TourBase(BaseModel):
     start_date: date
     end_date: date
     seat: int
-    tour_desc: str
+    tour_desc: Optional[str]
 
     class Config:
         orm_mode = True
@@ -36,10 +40,3 @@ class TourBase(BaseModel):
 
 class TourID(BaseModel):
     tour_id: str
-
-
-class Tour(TourBase):
-    pass
-
-    class Config:
-        orm_mode: True

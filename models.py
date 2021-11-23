@@ -4,7 +4,7 @@ from sqlalchemy.sql.expression import null
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.sql.sqltypes import VARCHAR, DATE, INTEGER, String
 
-import database
+from . import database
 
 
 class Tour(database.Base):
@@ -44,7 +44,7 @@ class Login(database.Base):
     __tablename__ = "login"
 
     login_id = Column(INTEGER, primary_key=True, autoincrement=True)
-    login_role_id = Column(Integer, ForeignKey("roles.role_id"), nullable=False)
+    login_role_id = Column(VARCHAR(10), ForeignKey("roles.role_id"), nullable=False)
     login_username = Column(String(100), nullable=False)
     login_password = Column(String(100), nullable=False)
 
@@ -102,7 +102,7 @@ class Customer(database.Base):
     customer_name = Column(VARCHAR(50), nullable=False)
     sex = Column(VARCHAR(10), nullable=False)
     birthday = Column(DATE, nullable=False)
-    nationality = Column(VARCHAR, nullable=False)
+    nationality = Column(VARCHAR(50), nullable=False)
     passport = Column(VARCHAR(100), default=null)
     address = Column(VARCHAR(100), nullable=False)
     city = Column(VARCHAR(50), nullable=False)
@@ -137,7 +137,7 @@ class Type(database.Base):
 class Tourguide(database.Base):
     __tablename__ = "tourguides"
 
-    tourGuide_id = Column(VARCHAR(10), primary_key=True, nullable=False)
+    tourguide_id = Column(VARCHAR(10), primary_key=True, nullable=False)
     guide_name = Column(VARCHAR(50), nullable=False)
     age = Column(Integer, nullable=False)
     sex = Column(VARCHAR(10), nullable=False)
