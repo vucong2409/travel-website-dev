@@ -13,3 +13,14 @@ router = APIRouter(prefix="/tours", tags=["Tours"])
 def get_tours(db: Session = Depends(get_db)):
     tours = db.query(models.Tour).all()
     return tours
+
+
+@router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.TourOut)
+def create_tours(tour: schemas.TourOut, db: Session = Depends(get_db)):
+    new_tour = models.Tour(**tour.dict())
+
+    db.add(new_tour)
+    db.commit()
+    db.refresh(new_tour)
+
+    return new_tour
