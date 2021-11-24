@@ -19,7 +19,7 @@ def get_password_hash(password):
 
 def register_login(db: Session, login: schemas.Login):
     login.login_password = get_password_hash(login.login_password)
-    db_login = models.Login(login_username=login.login_username, login_password=login.login_password, login_role_id=login.login_role_id)
+    db_login = models.Login(login_username=login.login_username, login_password=login.login_password, login_role_id=1)
     db.add(db_login)
     db.commit()
     db.refresh(db_login)
