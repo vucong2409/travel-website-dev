@@ -4,7 +4,7 @@ from sqlalchemy.sql.expression import null
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.sql.sqltypes import VARCHAR, DATE, INTEGER, String
 
-from . import database
+import database
 
 
 class Tour(database.Base):

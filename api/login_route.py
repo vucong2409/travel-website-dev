@@ -3,8 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy import schema
 from sqlalchemy.orm import Session
-from ..main import database
-from .. import schemas
+import database, schemas
 from . import login_svc
 
 router = APIRouter(prefix="/login", tags=["Login"])

@@ -2,11 +2,11 @@ from fastapi.params import Depends
 from jose.exceptions import JWTError
 from sqlalchemy import log
 from sqlalchemy.orm.session import Session
-from . import database, models
+import database, models
 from typing import final
 from fastapi import FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from .api import login_route, tour_route, login_svc
+from api import login_route, tour_route, login_svc
 
 # Create all table
 models.database.Base.metadata.create_all(bind=database.engine)
