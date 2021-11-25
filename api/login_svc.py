@@ -28,7 +28,7 @@ def register_login(db: Session, login: schemas.Login):
     db_login = models.Login(
         login_username=login.login_username,
         login_password=login.login_password,
-        login_role_id=login.login_role_id,
+        login_role_id=1,
     )
     db.add(db_login)
     db.commit()
