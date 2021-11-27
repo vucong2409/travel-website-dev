@@ -1,10 +1,13 @@
 from datetime import timedelta, datetime
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from pydantic.errors import PathNotADirectoryError
 from sqlalchemy import schema
 from sqlalchemy.orm import Session
+from sqlalchemy.sql.functions import mode
 import database, schemas
 from . import login_svc
+import models
 
 router = APIRouter(prefix="/login", tags=["Login"])
 
@@ -30,12 +33,32 @@ async def get_access_token(
 
 @router.post("/signup")
 async def signup(
-    login_info: schemas.Login_Form, db: Session = Depends(database.get_db)
+    login_info: schemas.UserRegisterForm, db: Session = Depends(database.get_db)
 ):
+    user_reg = schemas.User(
+        username = login_info.username,
+        nationality = login_info.nationality,
+        phone = login_info.phone,
+        address = login_info.address,
+        city = login_info.city,
+        email = login_info.email
+    )
+    login_svc.register_user(db, user_reg)
+
     login_reg = schemas.Login(
-        login_username=login_info.login_username,
-        login_password=login_info.login_password,
+        login_username=login_info.username,
+        login_password=login_info.password,
         login_role_id=1,
     )
     login_svc.register_login(db, login_reg)
+
     return "success"
+
+@router.get("/profile")
+async def get_profile(
+    login: models.Login = Depends(login_svc.get_current_user), db: Session = Depends(database.get_db)
+):
+    profile = login_svc.get_profile(login.login_username, db)
+    return profile
+
+

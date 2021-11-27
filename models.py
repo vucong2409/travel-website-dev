@@ -30,7 +30,11 @@ class User(database.Base):
     __tablename__ = "users"
 
     user_id = Column(
-        INTEGER, ForeignKey("login.login_id"), primary_key=True, nullable=False
+        INTEGER,
+        ForeignKey("login.login_id"),
+        primary_key=True,
+        nullable=False,
+        autoincrement=True,
     )
     user_name = Column(VARCHAR(50), nullable=False)  # unique?
     nationality = Column(VARCHAR(50), nullable=False)

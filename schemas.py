@@ -23,6 +23,17 @@ class Login(Login_Form):
     login_id: Optional[int]
     login_role_id: Optional[int]
 
+class User(BaseModel):
+    user_id: Optional[int]
+    username: str
+    nationality: str
+    phone: str
+    address: str
+    city: str
+    email: str
+
+class UserRegisterForm(User):
+    password: str
 
 class TourOut(BaseModel):
     tour_id: str
@@ -40,7 +51,6 @@ class TourOut(BaseModel):
 
     class Config:
         orm_mode = True
-
 
 class TourID(BaseModel):
     tour_id: str
