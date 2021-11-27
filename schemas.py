@@ -23,6 +23,7 @@ class Login(Login_Form):
     login_id: Optional[int]
     login_role_id: Optional[int]
 
+
 class User(BaseModel):
     user_id: Optional[int]
     username: str
@@ -32,18 +33,20 @@ class User(BaseModel):
     city: str
     email: str
 
+
 class UserRegisterForm(User):
     password: str
 
+
 class TourOut(BaseModel):
     tour_id: str
-    place_id: Optional[str]
-    tourguide_id: Optional[str]
-    type_id: Optional[str]
+    place_id: Optional[str] = 1
+    tourguide_id: Optional[str] = 1
+    type_id: Optional[str] = 1
     transport: str
-    departure_place: str
-    adult_price: str
-    kid_price: str
+    departure_place: str = "Hà Nội"
+    adult_price: str = "1,000,000"
+    kid_price: str = "1,000,000"
     start_date: date
     end_date: date
     seat: int
@@ -51,6 +54,21 @@ class TourOut(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class TourToChange(BaseModel):
+    place_id: Optional[str] = 1
+    tourguide_id: Optional[str] = 1
+    type_id: Optional[str] = 1
+    transport: str
+    departure_place: str = "Hà Nội"
+    adult_price: str = "1,000,000"
+    kid_price: str = "1,000,000"
+    start_date: date
+    end_date: date
+    seat: int
+    tour_desc: Optional[str]
+
 
 class TourID(BaseModel):
     tour_id: str
