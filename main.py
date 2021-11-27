@@ -12,11 +12,12 @@ from fastapi.middleware.cors import CORSMiddleware
 # Create all table
 models.database.Base.metadata.create_all(bind=database.engine)
 
-list_origins = ['localhost:3000',
-                'localhost:5000',
-                'localhost:5500',
-                '127.0.0.1:5500',
-                'falsesight.asia'
+list_origins = ['http://localhost:3000',
+                'http://localhost:5000',
+                'http://localhost:5500',
+                'http://127.0.0.1:5500',
+                'http://falsesight.asia',
+                'https://falsesight.asia'
                 ]
 
 app = FastAPI()
