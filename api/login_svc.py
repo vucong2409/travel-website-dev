@@ -35,6 +35,20 @@ def register_login(db: Session, login: schemas.Login):
     db.refresh(db_login)
 
 
+def register_user(db: Session, user: schemas.User):
+    db_user = models.User(
+        user_name = user.username,
+        nationality = user.nationality,
+        phone = user.phone,
+        address = user.address,
+        city = user.city,
+        email = user.email
+    )
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+
+
 def get_login_by_username(db: Session, login_name: str):
     return (
         db.query(models.Login).filter(models.Login.login_username == login_name).first()
@@ -100,3 +114,10 @@ def get_current_user(
     )
 
     return login
+
+def get_profile(username: str, db: Session):
+    profile = ( db.query(models.User)
+            .filter(models.User.user_name == username)
+            .first()
+    )
+    return profile
