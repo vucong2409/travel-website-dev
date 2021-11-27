@@ -14,6 +14,7 @@ models.database.Base.metadata.create_all(bind=database.engine)
 
 list_origins = ['localhost:3000',
                 'localhost:5000',
+                'localhost:5500',
                 'falsesight.asia'
                 ]
 
