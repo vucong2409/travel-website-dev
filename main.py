@@ -22,8 +22,8 @@ app.include_router(login_route.router)
 app.include_router(tour_route.router)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=list_origins,
-    allow_credentials=True,
+    allow_origins=['*'],
+    # allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*']
 )
