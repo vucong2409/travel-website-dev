@@ -71,9 +71,9 @@ class TourToChange(BaseModel):
     seat: int
     tour_desc: Optional[str]
 
+    class Config:
+        orm_mode = True
 
-class TourID(BaseModel):
-    tour_id: str
 
 class Place(BaseModel):
     place_id: str
