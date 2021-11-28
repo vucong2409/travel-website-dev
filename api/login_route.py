@@ -32,11 +32,10 @@ async def get_access_token(
 
 @router.post("/token-json", response_model=schemas.Token)
 async def get_access_token(
-    user: str,
-    password: str,
+    form: schemas.Login_Form,
     db: Session = Depends(database.get_db),
 ):
-    user_login = login_svc.authenticate_user(db,user,password)
+    user_login = login_svc.authenticate_user(db, form.login_username, form.login_password)
     if not user_login:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
