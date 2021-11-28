@@ -30,6 +30,26 @@ async def get_access_token(
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
+@router.post("/token-json", response_model=schemas.Token)
+async def get_access_token(
+    user: str,
+    password: str,
+    db: Session = Depends(database.get_db),
+):
+    user_login = login_svc.authenticate_user(db,user,password)
+    if not user_login:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    access_token_expires = timedelta(minutes=30)
+    access_token = login_svc.create_access_token(
+        data={"login_id": user_login.login_id}, expires_delta=access_token_expires
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
+
+
 
 @router.post("/signup")
 async def signup(
