@@ -4,6 +4,8 @@ from datetime import date, datetime
 
 from sqlalchemy import orm
 
+from models import City
+
 
 class Token(BaseModel):
     access_token: str
@@ -72,3 +74,12 @@ class TourToChange(BaseModel):
 
 class TourID(BaseModel):
     tour_id: str
+
+class Place(BaseModel):
+    place_id: str
+    place_name: str
+    city_id: str
+    place_desc: str
+
+    class Config:
+        orm_mode = True
