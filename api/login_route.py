@@ -79,5 +79,3 @@ async def get_profile(
 ):
     profile = login_svc.get_profile(login.login_username, db)
     return profile
-
-

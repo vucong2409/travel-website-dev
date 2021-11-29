@@ -108,3 +108,12 @@ class Booking(BaseModel):
     booking_id: int
     order_id: int
     customer_id: int
+
+class OrderForm(BaseModel):
+    order_date: date
+    order_detail: str
+    tour_id: str
+    adult_number: int
+    kid_number: int
+    adult_price: int
+    kid_price: int
