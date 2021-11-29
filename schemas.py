@@ -3,6 +3,9 @@ from pydantic import BaseModel
 from datetime import date, datetime
 
 from sqlalchemy import orm
+from sqlalchemy.log import class_logger
+from sqlalchemy.sql.elements import ClauseList
+from database import Base
 
 from models import City
 
@@ -85,3 +88,23 @@ class Place(BaseModel):
 
     class Config:
         orm_mode = True
+
+class Order(BaseModel):
+    order_id: int
+    order_date: date
+    order_detail: str
+    user_id: int
+
+class OrderDetails(BaseModel):
+    order_id: int
+    tour_id: str
+    adult_number: int
+    kid_number: int
+    adult_price: int
+    kid_price: int
+    customer_id: int
+
+class Booking(BaseModel):
+    booking_id: int
+    order_id: int
+    customer_id: int
