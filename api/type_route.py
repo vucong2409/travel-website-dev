@@ -12,3 +12,6 @@ router = APIRouter(prefix='/type', tags=['Type'])
 def get_all_type(db: Session = Depends(database.get_db)):
     return type_svc.get_all_type(db)
 
+@router.get('/get')
+def get_by_id(id: str, db: Session = Depends(database.get_db)):
+    return type_svc.get_type_by_id(db, id)
