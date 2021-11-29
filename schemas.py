@@ -53,6 +53,7 @@ class TourOut(BaseModel):
     end_date: date
     seat: int
     tour_desc: Optional[str]
+    tour_title: str
 
     class Config:
         orm_mode = True
@@ -70,6 +71,7 @@ class TourToChange(BaseModel):
     end_date: date
     seat: int
     tour_desc: Optional[str]
+    tour_title: str
 
 
 class TourID(BaseModel):

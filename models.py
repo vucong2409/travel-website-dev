@@ -24,6 +24,7 @@ class Tour(database.Base):
     end_date = Column(DATE, nullable=False)
     seat = Column(INTEGER, nullable=False)
     tour_desc = Column(VARCHAR(100), default=null)
+    tour_title = Column(VARCHAR(100))
 
 
 class User(database.Base):
