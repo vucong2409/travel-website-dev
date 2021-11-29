@@ -73,9 +73,9 @@ class TourToChange(BaseModel):
     tour_desc: Optional[str]
     tour_title: str
 
+    class Config:
+        orm_mode = True
 
-class TourID(BaseModel):
-    tour_id: str
 
 class Place(BaseModel):
     place_id: str
