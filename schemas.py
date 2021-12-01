@@ -117,3 +117,13 @@ class OrderForm(BaseModel):
     kid_number: int
     adult_price: int
     kid_price: int
+
+class Routes(BaseModel):
+    route_id: Optional[int]
+    route_name: str
+    route_desc: str
+    step_number: int
+    tour_id: str
+
+    class Config: 
+        orm_mode = True

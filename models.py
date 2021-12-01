@@ -1,8 +1,11 @@
+from typing import Counter
+from fastapi import routing
 from sqlalchemy import Column, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.expression import null
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.sql.sqltypes import VARCHAR, DATE, INTEGER, String
+from sqlalchemy.sql.traversals import ColIdentityComparatorStrategy
 
 import database
 
@@ -172,3 +175,13 @@ class Booking(database.Base):
     )
     order_id = Column(INTEGER, nullable=False)
     customer_id = Column(INTEGER, ForeignKey("customers.customer_id"), nullable=False)
+
+
+class Routes(database.Base):
+    __tablename__ = 'routes'
+
+    route_id = Column(INTEGER, primary_key=True, nullable=False, autoincrement=True)
+    route_name = Column(VARCHAR(50), nullable=False)
+    route_desc = Column(VARCHAR(100), nullable=False)
+    step_number = Column(INTEGER, nullable=False)
+    tour_id = Column(VARCHAR(10), nullable=False)
