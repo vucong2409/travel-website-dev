@@ -19,7 +19,9 @@ list_origins = ['http://localhost:3000',
                 'http://falsesight.asia',
                 'https://falsesight.asia',
                 'https://vitra-travel.web.app',
-                'http://vitra-travel.web.app'
+                'http://vitra-travel.web.app',
+                'https://travel-web-dev.web.app/',
+                'http://travel-web-dev.web.app/'
                 ]
 
 app = FastAPI()
