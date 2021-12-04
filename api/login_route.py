@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic.errors import PathNotADirectoryError
 from sqlalchemy import schema
+from sqlalchemy.ext import declarative
 from sqlalchemy.orm import Session
 from sqlalchemy.sql.functions import mode
 import database, schemas
@@ -79,3 +80,12 @@ async def get_profile(
 ):
     profile = login_svc.get_profile(login.login_username, db)
     return profile
+
+@router.post("/edit")
+async def edit_profile(
+    user_alter: schemas.UserAlter,
+    login: models.Login = Depends(login_svc.get_current_user),
+    db: Session = Depends(database.get_db),
+):
+    login_svc.alter_user(db, user_alter, login)
+    return "success"

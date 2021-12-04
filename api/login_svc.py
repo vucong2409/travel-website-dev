@@ -4,6 +4,7 @@ from jose import JWTError, jwt
 from typing import Optional
 from fastapi import status, HTTPException, Depends
 from fastapi.security import OAuth2PasswordBearer
+from pydantic.types import NonPositiveFloat
 from sqlalchemy import log
 from sqlalchemy.orm import Session
 from sqlalchemy.sql.expression import true
@@ -49,9 +50,36 @@ def register_user(db: Session, user: schemas.User):
     db.commit()
     db.refresh(db_user)
 
-def alter_user(db: Session, user: schemas.UserAlter, login: schemas.Login):
-    return true
+def alter_user(db: Session, user: schemas.UserAlter, login: models.Login):
+    user_in_db = db.query(models.User).filter(models.User.user_name == login.login_username).first()
+
+    if user.login_password != None:
+        login.login_password = get_password_hash(user.login_password) 
     
+    if user.nationality != None:
+        user_in_db.nationality = user.nationality
+    
+    if user.phone != None:
+        user_in_db.phone = user.phone
+    
+    if user.address != None:
+        user_in_db.address = user.address
+    
+    if user.city != None:
+        user_in_db.city = user.city
+    
+    if user.email != None:
+        user_in_db.email = user.email
+    
+
+    db.add(login)
+    db.commit()
+    db.refresh(login)
+
+    db.add(user_in_db)
+    db.commit()
+    db.refresh(user_in_db)
+
 def get_login_by_username(db: Session, login_name: str):
     return (
         db.query(models.Login).filter(models.Login.login_username == login_name).first()
