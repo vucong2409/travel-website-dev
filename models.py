@@ -185,3 +185,11 @@ class Routes(database.Base):
     route_desc = Column(VARCHAR(100), nullable=False)
     step_number = Column(INTEGER, nullable=False)
     tour_id = Column(VARCHAR(10), nullable=False)
+
+class Images(database.Base):
+    __tablename__ = 'images'
+
+    id = Column(INTEGER, primary_key=True, nullable=False, unique=True, autoincrement=True)
+    name = Column(VARCHAR(50), nullable=True)
+    link = Column(VARCHAR(200), nullable=True)
+    tour_id = Column(VARCHAR(10), nullable=True)

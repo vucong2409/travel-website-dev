@@ -1,3 +1,4 @@
+from os import link
 from typing import Optional
 from pydantic import BaseModel
 from datetime import date, datetime
@@ -130,6 +131,15 @@ class Routes(BaseModel):
     route_name: str
     route_desc: str
     step_number: int
+    tour_id: str
+
+    class Config: 
+        orm_mode = True
+    
+class Images(BaseModel):
+    id: Optional[int]
+    name: str
+    link: str
     tour_id: str
 
     class Config: 
