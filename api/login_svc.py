@@ -6,6 +6,7 @@ from fastapi import status, HTTPException, Depends
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy import log
 from sqlalchemy.orm import Session
+from sqlalchemy.sql.expression import true
 import schemas, models, database
 from passlib.context import CryptContext
 
@@ -48,7 +49,9 @@ def register_user(db: Session, user: schemas.User):
     db.commit()
     db.refresh(db_user)
 
-
+def alter_user(db: Session, user: schemas.UserAlter, login: schemas.Login):
+    return true
+    
 def get_login_by_username(db: Session, login_name: str):
     return (
         db.query(models.Login).filter(models.Login.login_username == login_name).first()

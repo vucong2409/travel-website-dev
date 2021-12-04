@@ -38,6 +38,13 @@ class User(BaseModel):
     city: str
     email: str
 
+class UserAlter(BaseModel):
+    login_password: Optional[str] = None
+    nationality: Optional[str] = None
+    phone: Optional[str] = None
+    address: Optional[str] = None
+    city: Optional[str] = None
+    email: Optional[str] = None
 
 class UserRegisterForm(User):
     password: str
