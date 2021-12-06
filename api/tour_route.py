@@ -17,6 +17,9 @@ def get_tours(db: Session = Depends(database.get_db), limit: int = 10, skip: int
     tours = tour_svc.get_tours(db, limit, skip)
     return tours
 
+@router.post("/search-by-place")
+def search_tour_by_place(query_obj: schemas.Place_Query , db: Session = Depends(database.get_db)):
+    return tour_svc.query_tour_by_place(db, query_obj.place_id, query_obj.query)
 
 @router.get("/tour/get/{tour_id}", response_model=schemas.TourOut)
 def get_tour_by_id(tour_id: str, db: Session = Depends(database.get_db)):

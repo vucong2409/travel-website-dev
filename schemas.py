@@ -2,6 +2,7 @@ from os import link
 from typing import Optional
 from pydantic import BaseModel
 from datetime import date, datetime
+from pydantic.errors import cls_kwargs
 
 from sqlalchemy import orm
 from sqlalchemy.log import class_logger
@@ -148,3 +149,13 @@ class Images(BaseModel):
 
     class Config: 
         orm_mode = True
+
+class Search_Query(BaseModel):
+    query: str
+
+class Place_Query(Search_Query):
+    place_id: Optional[str] = ''
+
+class Type_Query(Search_Query):
+    type_id: Optional[str] = ''
+    
