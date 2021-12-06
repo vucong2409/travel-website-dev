@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy.sql.functions import mode
 import schemas, models
 from fastapi import status, HTTPException, Depends
 from sqlalchemy.sql.expression import and_
@@ -63,5 +64,15 @@ def query_tour_by_place(db: Session, place_id: str, query: str):
         return (
             db.query(models.Tour)
             .filter(and_(models.Tour.place_id == place_id, models.Tour.tour_title.contains(query)))
+            .all()
+        )
+
+def query_tour_by_type(db: Session, type_id: str, query: str):
+    if (query == ''):
+        return db.query(models.Tour).filter(models.Tour.type_id == type_id).all()
+    else:
+        return (
+            db.query(models.Tour)
+            .filter(and_(models.Tour.type_id == type_id, models.Tour.tour_title.contains(query)))
             .all()
         )
