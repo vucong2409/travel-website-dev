@@ -89,3 +89,7 @@ async def edit_profile(
 ):
     login_svc.alter_user(db, user_alter, login)
     return "success"
+
+@router.get("/isAdmin")
+async def check_if_admin_or_not(login: models.Login = Depends(login_svc.get_current_user)):
+    return login_svc.admin_or_not(login)

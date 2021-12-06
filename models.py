@@ -141,6 +141,7 @@ class Type(database.Base):
     type_id = Column(VARCHAR(10), primary_key=True, nullable=False)
     type_name = Column(VARCHAR(50), nullable=False)
     type_desc = Column(VARCHAR(100), default=null)
+    type_img = Column(VARCHAR(200), default=null)
 
 
 class Tourguide(database.Base):

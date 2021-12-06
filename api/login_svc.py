@@ -7,7 +7,7 @@ from fastapi.security import OAuth2PasswordBearer
 from pydantic.types import NonPositiveFloat
 from sqlalchemy import log
 from sqlalchemy.orm import Session
-from sqlalchemy.sql.expression import true
+from sqlalchemy.sql.expression import false, true
 import schemas, models, database
 from passlib.context import CryptContext
 
@@ -152,3 +152,9 @@ def get_profile(username: str, db: Session):
             .first()
     )
     return profile
+
+def admin_or_not(login: models.Login):
+    if login.login_role_id > 1:
+        return true
+    else: 
+        return false
