@@ -154,7 +154,7 @@ def get_profile(username: str, db: Session):
     return profile
 
 def admin_or_not(login: models.Login):
-    if login.login_role_id > 1:
-        return true
+    if login.login_role_id != '1':
+        return 'true'
     else: 
-        return false
+        return 'false' 
