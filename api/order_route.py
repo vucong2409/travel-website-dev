@@ -31,3 +31,6 @@ def delete_order(id: int, login: models.Login = Depends(login_svc.get_current_us
         )
     return 'success'
 
+@router.get('/get-all-your-unconfirmed-order')
+def get_all_your_unconfirmed_order(login: models.Login = Depends(login_svc.get_current_user), db: Session = Depends(database.get_db)):
+    return order_svc.get_your_unconfirmed_order(login, db)

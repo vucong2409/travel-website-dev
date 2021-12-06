@@ -105,6 +105,7 @@ class Order(BaseModel):
     order_date: date
     order_detail: str
     user_id: int
+    confirmed: int
 
 class OrderDetails(BaseModel):
     order_id: int

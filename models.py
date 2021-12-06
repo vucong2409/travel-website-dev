@@ -82,6 +82,7 @@ class Order(database.Base):
     order_date = Column(DATE, nullable=False)  # datetime
     order_detail = Column(VARCHAR(50), default=null)
     user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
+    confirmed = Column(Integer)
 
 
 class Orderdetail(database.Base):
