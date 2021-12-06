@@ -93,6 +93,7 @@ class Place(BaseModel):
     place_name: str
     city_id: str
     place_desc: str
+    image_link: str
 
     class Config:
         orm_mode = True

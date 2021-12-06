@@ -125,6 +125,7 @@ class Place(database.Base):
     place_name = Column(VARCHAR(50), nullable=False)
     city_id = Column(VARCHAR(10), ForeignKey("cities.city_id"), nullable=False)
     place_desc = Column(VARCHAR(100), default=null)
+    image_link = Column(VARCHAR(200), default=null)
 
 
 class City(database.Base):
