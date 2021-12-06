@@ -65,6 +65,7 @@ class TourOut(BaseModel):
     seat: int
     tour_desc: Optional[str]
     tour_title: str
+    tour_bg_img: Optional[str]
 
     class Config:
         orm_mode = True
@@ -83,6 +84,7 @@ class TourToChange(BaseModel):
     seat: int
     tour_desc: Optional[str]
     tour_title: str
+    tour_bg_img: Optional[str]
 
     class Config:
         orm_mode = True
