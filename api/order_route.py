@@ -2,6 +2,7 @@ from fastapi import FastAPI, Response, routing, status, HTTPException, APIRouter
 from fastapi import params
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
+from sqlalchemy.sql.expression import false
 from sqlalchemy.sql.functions import mode
 from api import order_svc
 
@@ -34,3 +35,22 @@ def delete_order(id: int, login: models.Login = Depends(login_svc.get_current_us
 @router.get('/get-all-your-unconfirmed-order')
 def get_all_your_unconfirmed_order(login: models.Login = Depends(login_svc.get_current_user), db: Session = Depends(database.get_db)):
     return order_svc.get_your_unconfirmed_order(login, db)
+
+@router.get('/get-all-unconfirmed-order-admin')
+def get_all_uncomfirmed_order(login: models.Login = Depends(login_svc.get_current_user), db: Session = Depends(database.get_db)):
+    result = order_svc.get_all_unconfirmed_order(login, db) 
+    if (result == False):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail='You are not authorized to call this api'
+        )
+    else:
+        return result
+    
+@router.get('/confirm-order')
+def confirm_order(order_id: int, login: models.Login = Depends(login_svc.get_current_user), db: Session = Depends(database.get_db)):
+    if not order_svc.confirm_order(login, db, order_id):
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail='Error'
+        )
+    else: 
+        return 'success'

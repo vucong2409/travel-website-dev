@@ -29,7 +29,7 @@ def get_your_unconfirmed_order(user: models.Login, db: Session):
 
 def get_all_unconfirmed_order(user: models.Login, db: Session):
     if user.login_role_id == '1':
-        return false
+        return False
 
     orders = (db.query(models.Order)
         .filter(models.Order.confirmed == 0) 
@@ -39,7 +39,7 @@ def get_all_unconfirmed_order(user: models.Login, db: Session):
 
 def confirm_order(user: models.Login, db: Session, id: int):
     if user.login_role_id == '1':
-        return false
+        return False
 
     order = (db.query(models.Order)
         .filter(models.Order.order_id == id) 
@@ -48,10 +48,13 @@ def confirm_order(user: models.Login, db: Session, id: int):
     if (order.first() == None):
         return False
 
-    order.confirmed = 1
-    db.add(order)
+    order_mapped = order.first()
+
+    order_mapped.confirmed = 1
+    db.add(order_mapped)
     db.commit()
-    db.refresh(order)
+    db.refresh(order_mapped)
+    return True
 
 def create_your_order(user: models.Login, order_form: schemas.OrderForm, db: Session):
     order = models.Order(
