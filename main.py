@@ -21,7 +21,9 @@ list_origins = ['http://localhost:3000',
                 'https://vitra-travel.web.app',
                 'http://vitra-travel.web.app',
                 'https://travel-web-dev.web.app/',
-                'http://travel-web-dev.web.app/'
+                'http://travel-web-dev.web.app/',
+                'http://localhost:3001',
+                'http://localhost:3002'
                 ]
 
 app = FastAPI()
