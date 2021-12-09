@@ -39,9 +39,7 @@ def get_tour_by_id(tour_id: str, db: Session = Depends(database.get_db)):
     return tour
 
 
-@router.post(
-    "/create", status_code=status.HTTP_201_CREATED, response_model=schemas.TourOut
-)
+@router.post("/create")
 def create_tours(
     tour: schemas.TourOut,
     db: Session = Depends(database.get_db),
