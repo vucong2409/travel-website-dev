@@ -45,7 +45,6 @@ def create_tours(
     db: Session = Depends(database.get_db),
     login: models.Login = Depends(get_current_user),
 ):
-
     if (login.login_role_id == '1'):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
