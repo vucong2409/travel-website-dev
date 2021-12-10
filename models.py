@@ -26,7 +26,7 @@ class Tour(database.Base):
     start_date = Column(DATE, nullable=False)
     end_date = Column(DATE, nullable=False)
     seat = Column(INTEGER, nullable=False)
-    tour_desc = Column(VARCHAR(100), default=null)
+    tour_desc = Column(VARCHAR(1000), default=null)
     tour_title = Column(VARCHAR(100))
     tour_bg_img = Column(VARCHAR(200), nullable=True)
 
