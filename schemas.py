@@ -57,13 +57,13 @@ class TourOut(BaseModel):
     place_id: Optional[str] = 1
     tourguide_id: Optional[str] = 1
     type_id: Optional[str] = 1
-    transport: str
+    transport: Optional[str]
     departure_place: str = "Hà Nội"
     adult_price: str = "1,000,000"
     kid_price: str = "1,000,000"
-    start_date: date
-    end_date: date
-    seat: int
+    start_date: Optional[date]
+    end_date: Optional[date]
+    seat: Optional[str]
     tour_desc: Optional[str]
     tour_title: str
     tour_bg_img: Optional[str]
