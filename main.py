@@ -25,7 +25,9 @@ list_origins = ['http://localhost:3000',
                 'https://deploy-with-admin.web.app',
                 'http://deploy-with-admin.web.app',
                 'https://deploy-web-admin.web.app',
-                'http://deploy-web-admin.web.app'
+                'http://deploy-web-admin.web.app',
+                'https://vitra-travel.web.app/',
+                'https://vitra-travel.web.app'
                 ]
 
 app = FastAPI()
