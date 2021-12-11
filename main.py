@@ -18,12 +18,12 @@ list_origins = ['http://localhost:3000',
                 'http://127.0.0.1:5500',
                 'http://falsesight.asia',
                 'https://falsesight.asia',
-                'https://vitra-travel.web.app',
-                'http://vitra-travel.web.app',
                 'https://travel-web-dev.web.app/',
                 'http://travel-web-dev.web.app/',
-                'http://localhost:3001',
-                'http://localhost:3002'
+                'https://deploy-with-admin.web.app/',
+                'http://deploy-with-admin.web.app/',
+                'https://deploy-with-admin.web.app',
+                'http://deploy-with-admin.web.app'
                 ]
 
 app = FastAPI()
