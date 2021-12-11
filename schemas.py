@@ -40,6 +40,9 @@ class User(BaseModel):
     city: str
     email: str
 
+    class Config:
+        orm_mode = True
+
 class UserAlter(BaseModel):
     login_password: Optional[str] = None
     nationality: Optional[str] = None
@@ -159,3 +162,33 @@ class Place_Query(Search_Query):
 class Type_Query(Search_Query):
     type_id: Optional[str] = ''
     
+class UserName(BaseModel):
+    user_name: str
+
+    class Config:
+        orm_mode = True
+
+
+class Comment(BaseModel):
+    comment_id: int
+    user: UserName
+    rating: int
+    comment: str
+
+    class Config:
+        orm_mode = True
+
+class CommentPost(BaseModel):
+    tour_id: str
+    rating: int
+    comment: str
+
+    class Config:
+        orm_mode = True
+
+class CommentUpdate(BaseModel):
+    rating: int
+    comment: str
+
+    class Config:
+        orm_mode = True

@@ -14,7 +14,6 @@ def get_tours(db: Session, limit: int, skip: int):
 
 
 def create_new_tour(db: Session, tour: schemas.TourOut):
-    print(tour.dict())
     new_tour = models.Tour(**tour.dict())
 
     db.add(new_tour)

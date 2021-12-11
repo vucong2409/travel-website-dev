@@ -6,7 +6,7 @@ import database, models
 from typing import final
 from fastapi import FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from api import image_route, login_route, order_route, route_route, tour_route, login_svc, place_route, type_route
+from api import image_route, login_route, order_route, route_route, tour_route, login_svc, place_route, type_route, comment_route
 from fastapi.middleware.cors import CORSMiddleware
 
 # Create all table
@@ -40,6 +40,7 @@ app.include_router(type_route.router)
 app.include_router(order_route.router)
 app.include_router(route_route.router)
 app.include_router(image_route.router)
+app.include_router(comment_route.router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=list_origins,
