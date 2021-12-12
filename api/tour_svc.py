@@ -75,3 +75,13 @@ def query_tour_by_type(db: Session, type_id: str, query: str):
             .filter(and_(models.Tour.type_id == type_id, models.Tour.tour_title.contains(query)))
             .all()
         )
+
+def query_tour_global(db: Session, query: str):
+    if (query == ''):
+        return db.query(models.Tour).all()
+    else:
+        return (
+            db.query(models.Tour)
+            .filter(models.Tour.tour_title.contains(query))
+            .all()
+        )

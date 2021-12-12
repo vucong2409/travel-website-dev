@@ -24,6 +24,10 @@ def get_tours(db: Session = Depends(database.get_db), limit: int = 10, skip: int
 def search_tour_by_place(query_obj: schemas.Place_Query, db: Session = Depends(database.get_db)):
     return tour_svc.query_tour_by_place(db, query_obj.place_id, query_obj.query)
 
+@router.post("/search-global")
+def search_tour_by_place(query: str, db: Session = Depends(database.get_db)):
+    return tour_svc.query_tour_global(db, query)
+
 @router.post('/search-by-type')
 def search_by_type(query_obj: schemas.Type_Query, db: Session = Depends(database.get_db)):
     return tour_svc.query_tour_by_type(db, query_obj.type_id, query_obj.query)
