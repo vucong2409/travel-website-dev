@@ -2,7 +2,8 @@ from sqlalchemy import create_engine, engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-DB_URL = "mysql+mysqldb://web-app:Web_1234@13.212.131.68:3306/travelwebsite"
+#Insert database connection string here
+DB_URL = ""
 
 engine = create_engine(DB_URL)
 
